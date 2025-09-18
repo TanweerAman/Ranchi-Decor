@@ -1,0 +1,10 @@
+{
+  "name": "ranchi-decor-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix Ranchi-Decor run dev",
+    "build": "npm --prefix Ranchi-Decor run build",
+    "preview": "npm --prefix Ranchi-Decor run preview",
+    "lint": "npm --prefix Ranchi-Decor run lint"
+  }
+}

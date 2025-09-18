@@ -79,3 +79,57 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Hero content entrance animations */
+@keyframes slide-down-fade {
+  from { opacity: 0; transform: translateY(-24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-down {
+  animation: slide-down-fade 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-slide-up {
+  animation: slide-up-fade 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.anim-delay-100 { animation-delay: 100ms; }
+.anim-delay-200 { animation-delay: 200ms; }
+.anim-delay-300 { animation-delay: 300ms; }
+.anim-delay-400 { animation-delay: 400ms; }
+
+/* Stronger hero-specific animations: from off-screen to center */
+@keyframes hero-slide-down-from-top {
+  from { opacity: 0; transform: translateY(-40vh); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-slide-up-from-bottom {
+  from { opacity: 0; transform: translateY(40vh); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-hero-text {
+  will-change: transform, opacity;
+  animation: hero-slide-down-from-top 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-hero-cta {
+  will-change: transform, opacity;
+  animation: hero-slide-up-from-bottom 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-text,
+  .animate-hero-cta,
+  .animate-slide-down,
+  .animate-slide-up {
+    animation: none !important;
+  }
+}

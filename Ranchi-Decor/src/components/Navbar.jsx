@@ -21,9 +21,9 @@ export default function Navbar() {
   return (
     <header className="bg-white shadow-md border-b border-gray-200 sticky top-0 z-50">
       {/* Top Bar */}
-      <div className="bg-gray-900 text-white text-sm py-2">
-        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center space-x-4 text-gray-300">
+      <div className="bg-gray-900 text-white text-xs sm:text-sm py-2">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-gray-300">
             <span className="flex items-center gap-1">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h18M8 5v14m8-14v14M5 19h14"/></svg>
               +91 9876543210
@@ -33,13 +33,10 @@ export default function Navbar() {
               info@ranchidecor.com
             </span>
           </div>
-          <div className="flex items-center space-x-4">
-            <Link to="/wishlist" className="hover:text-yellow-400 transition-colors">
-              Wishlist
-            </Link>
-            <Link to="/account" className="hover:text-yellow-400 transition-colors">
-              My Account
-            </Link>
+          {/* Hide secondary links on mobile, show from md up */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Link to="/wishlist" className="hover:text-yellow-400 transition-colors">Wishlist</Link>
+            <Link to="/account" className="hover:text-yellow-400 transition-colors">My Account</Link>
           </div>
         </div>
       </div>
@@ -54,7 +51,7 @@ export default function Navbar() {
               alt="Ranchi Decor"
               className="h-12 w-auto"
             /> */}
-            <span className="text-3xl font-bold text-gray-800 hover:text-blue-600 transition-colors">
+            <span className="text-2xl sm:text-3xl font-bold text-gray-800 hover:text-blue-600 transition-colors">
               Ranchi Decor
             </span>
           </Link>
@@ -79,7 +76,7 @@ export default function Navbar() {
           </div>
 
           {/* Right Side Actions */}
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-4 sm:space-x-6">
             {/* Cart */}
             <Link to="/cart" className="relative flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors">
               <div className="relative">
@@ -94,10 +91,7 @@ export default function Navbar() {
             </Link>
 
             {/* Login */}
-            <Link to="/login" className="text-gray-700 hover:text-blue-600 transition-colors">
-              <span className="hidden lg:block">Login</span>
-              <span className="lg:hidden">Login</span>
-            </Link>
+            <Link to="/login" className="text-gray-700 hover:text-blue-600 transition-colors">Login</Link>
 
             {/* Mobile Menu Button */}
             <button
