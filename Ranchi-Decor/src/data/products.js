@@ -1,0 +1,28 @@
+const products = [
+  { id: 1, name: 'Hospital Flooring', category: 'hospital-flooring', price: 450, image: '/Image/hospital.webp', rating: 4.8, description: 'Durable and hygienic flooring solution designed specifically for healthcare facilities, providing safety and easy maintenance.' },
+  { id: 2, name: 'Vinyl Flooring', category: 'vinyl-flooring', price: 320, image: '/Image/vinyl.jpg', rating: 4.6, description: 'Versatile vinyl flooring offering water resistance and a wide range of designs for residential and commercial spaces.' },
+  { id: 3, name: 'Office Flooring', category: 'office-flooring', price: 280, image: '/Image/office.jpg', rating: 4.7, description: 'Professional grade flooring for office environments, combining comfort, durability, and modern aesthetics.' },
+  { id: 4, name: 'Commercial Flooring', category: 'commercial-flooring', price: 550, image: '/Image/commercial.jpg', rating: 4.9, description: 'Heavy-duty flooring solutions engineered for high-traffic commercial areas and industrial applications.' },
+  { id: 5, name: 'Wallpapers', category: 'wallpapers', price: 180, image: '/Image/wallpaper.jpg', rating: 4.5, description: 'Wide selection of wallpapers to transform your walls with various patterns, textures, and colors.' },
+  { id: 6, name: 'Customized Wallpapers', category: 'customized-wallpapers', price: 350, image: '/Image/Customized Wallpapers.jpg', rating: 4.9, description: 'Personalized wallpaper solutions tailored to your specific design requirements and preferences.' },
+  { id: 7, name: 'Carpet', category: 'carpet', price: 420, image: '/Image/carpet.jpg', rating: 4.4, description: 'Luxurious carpets available in various styles and materials to add warmth and comfort to any room.' },
+  { id: 8, name: 'Wall-to-Wall Carpet', category: 'wall-to-wall-carpet', price: 520, image: '/Image/Wall-to-Wall Carpet.jpg', rating: 4.6, description: 'Seamless wall-to-wall carpet installations for a cohesive and elegant flooring solution.' },
+  { id: 9, name: 'Carpet Tiles', category: 'carpet-tiles', price: 290, image: '/Image/Carpet Tiles.jpg', rating: 4.3, description: 'Modular carpet tiles offering flexibility in design and easy maintenance for commercial spaces.' },
+  { id: 10, name: 'Gym Flooring', category: 'gym-flooring', price: 650, image: '/Image/Gym Flooring.jpg', rating: 4.8, description: 'Specialized flooring for fitness centers and gyms, providing shock absorption and durability.' },
+  { id: 11, name: 'Gym Tiles', category: 'gym-tiles', price: 380, image: '/Image/Gym Tiles.jpg', rating: 4.7, description: 'Interlocking tiles designed for gym environments, offering safety and performance benefits.' },
+  { id: 12, name: 'Wooden Flooring', category: 'wooden-flooring', price: 890, image: '/Image/Wooden Flooring.jpg', rating: 4.7, description: 'Natural wooden flooring that brings elegance and timeless beauty to interior spaces.' },
+  { id: 13, name: 'PVC Planks', category: 'pvc-planks', price: 250, image: '/Image/PVC Planks.jpg', rating: 4.5, description: 'Waterproof PVC planks mimicking the look of wood while offering superior durability and ease of installation.' },
+  { id: 14, name: 'SPC Flooring', category: 'spc-flooring', price: 480, image: '/Image/SPC Flooring.jpg', rating: 4.8, description: 'Stone Plastic Composite flooring combining the beauty of stone with the practicality of plastic.' },
+  { id: 15, name: 'Window Blinds', category: 'window-blinds', price: 150, image: '/Image/Window Blinds.jpg', rating: 4.4, description: 'Various window blind options to control light and privacy in your home or office.' },
+  { id: 16, name: 'Roman Blinds', category: 'roman-blinds', price: 220, image: '/Image/Roman Blinds.jpg', rating: 4.6, description: 'Elegant Roman blinds that add sophistication to windows with their clean, pleated design.' },
+  { id: 17, name: 'Roller Blinds', category: 'roller-blinds', price: 120, image: '/Image/Roller Blinds.jpg', rating: 4.3, description: 'Practical roller blinds offering complete light control and easy operation.' },
+  { id: 18, name: 'Vertical Blinds', category: 'vertical-blinds', price: 180, image: '/Image/Vertical Blinds.webp', rating: 4.5, description: 'Vertical blinds perfect for large windows and sliding doors, providing excellent light management.' },
+  { id: 19, name: 'Zebra Blinds', category: 'zebra-blinds', price: 200, image: '/Image/Zebra Blinds.webp', rating: 4.7, description: 'Dual-layer zebra blinds allowing for adjustable light and privacy levels.' },
+  { id: 20, name: 'Artificial Grass (Green)', category: 'artificial-grass', price: 350, image: '/Image/Artificial Grass (Green).jpg', rating: 4.6, description: 'Realistic green artificial grass perfect for landscaping, sports fields, and indoor applications.' },
+  { id: 21, name: 'Vertical Garden Grass', category: 'vertical-garden-grass', price: 280, image: '/Image/Vertical Garden Grass.jpg', rating: 4.8, description: 'Specialized grass solutions for vertical gardens and green walls.' },
+  { id: 22, name: 'PVC Panel Sheets', category: 'pvc-panel-sheets', price: 160, image: '/Image/PVC Panel Sheets.jpg', rating: 4.4, description: 'Versatile PVC panel sheets for wall cladding and decorative applications.' },
+  { id: 23, name: 'Fluted Panels', category: 'fluted-panels', price: 240, image: '/Image/Fluted Panels.jpg', rating: 4.5, description: 'Elegant fluted panels adding texture and dimension to interior walls.' },
+  { id: 24, name: 'UV Marble Sheets', category: 'uv-marble-sheets', price: 320, image: '/Image/UV Marble Sheets.jpg', rating: 4.7, description: 'UV-printed marble sheets offering the beauty of natural marble with enhanced durability.' }
+]
+
+export default products
