@@ -28,7 +28,7 @@ export default function ProductDetail() {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-96 object-cover rounded-2xl shadow-lg"
+                  className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-2xl shadow-lg"
                   loading="lazy"
                   referrerPolicy="no-referrer"
                   crossOrigin="anonymous"

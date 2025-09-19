@@ -35,38 +35,47 @@ export default function Cart() {
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-6">
             {cart.map(item => (
-              <div key={item.id} className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                <div className="flex items-center space-x-6">
-                  <div className="relative">
-                    <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded-xl" />
+              <div key={item.id} className="bg-white p-4 sm:p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                  <div className="relative shrink-0 self-center sm:self-auto">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-28 h-28 sm:w-24 sm:h-24 object-cover rounded-xl"
+                    />
                     <button
                       onClick={() => removeFromCart(item.id)}
                       className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs hover:bg-red-600 transition-colors"
+                      aria-label="Remove item"
                     >
                       ×
                     </button>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-800 mb-2">{item.name}</h3>
+                  <div className="flex-1 min-w-0 w-full">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-1 sm:mb-2 break-words">
+                      {item.name}
+                    </h3>
                     <p className="text-gray-600 mb-3">₹{item.price.toLocaleString()} each</p>
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-2">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+                      <div className="flex items-center gap-2">
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
+                          className="w-9 h-9 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
+                          aria-label="Decrease quantity"
                         >
                           −
                         </button>
                         <span className="w-12 text-center font-semibold">{item.quantity}</span>
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
+                          className="w-9 h-9 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
+                          aria-label="Increase quantity"
                         >
                           +
                         </button>
                       </div>
-                      <div className="text-right">
-                        <p className="text-2xl font-bold text-green-600">
+                      <div className="text-left sm:text-right">
+                        <p className="text-xl sm:text-2xl font-bold text-green-600">
                           ₹{(item.price * item.quantity).toLocaleString()}
                         </p>
                       </div>

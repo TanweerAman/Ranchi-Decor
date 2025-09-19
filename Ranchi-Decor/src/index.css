@@ -67,6 +67,9 @@ button:focus-visible {
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* Improve touch scrolling on horizontal carousels */
+.touch-pan-x { touch-action: pan-x; }
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

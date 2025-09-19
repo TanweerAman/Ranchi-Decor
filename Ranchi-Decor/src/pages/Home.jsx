@@ -133,6 +133,19 @@ export default function Home() {
     }
   }, [nextSlide, isPaused]);
 
+  // Preload current slide image; only show spinner if not yet loaded
+  useEffect(() => {
+    const current = slides[currentSlide];
+    if (!current) return;
+    const { id, image } = current;
+    // If we've already recorded it as loaded, nothing to do
+    if (imagesLoaded[id]) return;
+    const img = new Image();
+    img.src = image;
+    img.onload = () => setImagesLoaded((prev) => ({ ...prev, [id]: true }));
+    img.onerror = () => setImagesLoaded((prev) => ({ ...prev, [id]: true }));
+  }, [currentSlide, slides, imagesLoaded]);
+
   const onTouchStart = (e) => {
     setTouchStartX(e.touches[0].clientX);
     setTouchDeltaX(0);
@@ -204,7 +217,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Slider */}
       <section
-        className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden"
+        className="relative h-[250px] sm:h-[460px] md:h-[560px] lg:h-[660px] overflow-hidden"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={onTouchStart}
@@ -215,12 +228,12 @@ export default function Home() {
           {slides.map((slide, index) => (
             <div
               key={slide.id}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
+              className={`absolute inset-0 transition-opacity duration-800 ease-out ${
                 index === currentSlide ? "opacity-100" : "opacity-0"
               }`}
             >
-              {/* Fallback gradient background (behind image) */}
-              <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-600 to-purple-600" />
+              {/* Neutral fallback background (avoid blue flash on refresh) */}
+              <div className="absolute inset-0 z-0 bg-neutral-800" />
 
               {/* Actual image element so we can detect load/error and ensure rendering */}
               <img
@@ -239,21 +252,18 @@ export default function Home() {
                 }}
               />
 
-              {/* Loading Overlay */}
-              {!imagesLoaded[slide.id] && (
-                <div className="absolute inset-0 z-10 bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
-                  <div className="text-white text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-                    <p className="text-lg font-semibold">Loading...</p>
-                  </div>
+              {/* Loading overlay: visible until current image loads */}
+              {index === currentSlide && !imagesLoaded[slide.id] && (
+                <div className="absolute inset-0 z-[35] flex items-center justify-center bg-black/40">
+                  <div className="w-10 h-10 border-4 border-white/50 border-t-white rounded-full animate-spin" />
                 </div>
               )}
 
-              {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-black/40 z-20" />
+              {/* Dark Overlay (slightly lighter like reference) */}
+              <div className="absolute inset-0 bg-black/30 z-20" />
 
-              {/* Content - perfectly centered */}
-              <div className="relative h-full z-30 flex items-center justify-center">
+              {/* Content - perfectly centered (hide until image ready) */}
+              <div className={`relative h-full z-30 flex items-center justify-center ${imagesLoaded[slide.id] ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
                 <div
                   key={`hero-content-${currentSlide}-${slide.id}`}
                   className="w-full max-w-4xl px-4 sm:px-6 lg:px-8 text-center"
@@ -269,7 +279,7 @@ export default function Home() {
                   </p>
                   <Link
                     to={slide.ctaLink}
-                    className="animate-hero-cta anim-delay-300 inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-colors"
+                    className="animate-hero-cta anim-delay-300 inline-block bg-red-500 hover:bg-red-600 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-colors"
                   >
                     {slide.ctaText}
                   </Link>
@@ -278,10 +288,10 @@ export default function Home() {
             </div>
           ))}
 
-          {/* Navigation Arrows (hidden on small screens) */}
+          {/* Navigation Arrows (always visible and functional) */}
           <button
             onClick={prevSlide}
-            className="hidden md:flex absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 sm:p-3 rounded-full transition-all"
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-red-500 hover:bg-red-600 text-white p-2 sm:p-3 rounded-full transition-all z-40 transform hover:scale-110"
             aria-label="Previous slide"
           >
             <svg
@@ -300,7 +310,7 @@ export default function Home() {
           </button>
           <button
             onClick={nextSlide}
-            className="hidden md:flex absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 sm:p-3 rounded-full transition-all"
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-red-500 hover:bg-red-600 text-white p-2 sm:p-3 rounded-full transition-all z-40 transform hover:scale-110"
             aria-label="Next slide"
           >
             <svg
@@ -318,15 +328,17 @@ export default function Home() {
             </svg>
           </button>
 
-          {/* Slide Indicators (clickable dots; prominent on mobile) */}
-          <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+          {/* Slide Indicators (larger clickable dots with red-400 active color) */}
+          <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-40">
             {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 aria-label={`Go to slide ${index + 1}`}
-                className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all ${
-                  index === currentSlide ? "bg-white scale-110" : "bg-white/50 hover:bg-white/70"
+                className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-300 ${
+                  index === currentSlide 
+                    ? "bg-red-400 scale-125 shadow-lg" 
+                    : "bg-white/60 hover:bg-white/80 hover:scale-110"
                 }`}
               />
             ))}
@@ -341,10 +353,37 @@ export default function Home() {
   <section className="py-8 sm:py-12 lg:py-16 bg-[color:var(--pale-bg,#fbf9f7)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            title="Shop All Categories"
+            title={<span>Shop All <span className="text-red-400">Categories</span></span>}
             subtitle="Explore our wide range of products"
           />
-          <CategoryGrid categories={categories} />
+          {/* Mobile View - Match 'Trending on Ranchi Decor' style */}
+          <div className="block md:hidden">
+            {/* Small Product Cards Grid - 2-column layout */}
+            <div className="grid grid-cols-2 gap-3 mb-6">
+              {categories.map((cat) => (
+                <Link key={cat.id} to={cat.link || "/products"} className="bg-gray-50 p-3 flex items-center space-x-3 hover:shadow-md hover:bg-gray-100 transition-all duration-200 cursor-pointer rounded-lg">
+                  <div className="w-10 h-10 overflow-hidden rounded-lg flex-shrink-0">
+                    <img
+                      src={cat.image}
+                      alt={cat.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-medium text-gray-900 text-xs truncate">{cat.name}</h3>
+                    <p className="text-xs text-gray-500">Shop now</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {/* Mobile Large Promotional Cards removed per request */}
+          </div>
+
+          {/* Desktop View - keep original grid */}
+          <div className="hidden md:block">
+            <CategoryGrid categories={categories} />
+          </div>
         </div>
       </section>
 
@@ -353,7 +392,7 @@ export default function Home() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Title */}
       <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8">
-        Trending on Ranchi Decor
+        Trending on <span className="text-red-400">Ranchi Decor</span>
       </h2>
       
       {/* Mobile View - Grid Layout */}
@@ -497,7 +536,7 @@ export default function Home() {
                   <h3 className="text-sm font-bold text-white mb-1 leading-tight drop-shadow-lg">Transform Your Space with Premium SPC</h3>
                   <p className="text-xs text-white font-medium drop-shadow-lg">SPC Flooring</p>
                 </div>
-                <button className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 text-xs font-bold self-start transition-colors rounded">
+                <button className="bg-white text-red-400 hover:text-red-500 px-3 py-1 text-xs font-bold self-start transition-colors rounded">
                   SHOP NOW
                 </button>
               </div>
@@ -518,7 +557,7 @@ export default function Home() {
                   <h3 className="text-sm font-bold text-white mb-1 leading-tight drop-shadow-lg">Blinds That Control Light & Privacy</h3>
                   <p className="text-xs text-white font-medium drop-shadow-lg">Window Blinds</p>
                 </div>
-                <button className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 text-xs font-bold self-start transition-colors rounded">
+                <button className="bg-white text-red-400 hover:text-red-500 px-3 py-1 text-xs font-bold self-start transition-colors rounded">
                   SHOP NOW
                 </button>
               </div>
@@ -539,7 +578,7 @@ export default function Home() {
                   <h3 className="text-sm font-bold text-white mb-1 leading-tight drop-shadow-lg">Elegant Panels for Modern Interiors</h3>
                   <p className="text-xs text-white font-medium drop-shadow-lg">Fluted Panels</p>
                 </div>
-                <button className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 text-xs font-bold self-start transition-colors rounded">
+                <button className="bg-white text-red-400 hover:text-red-500 px-3 py-1 text-xs font-bold self-start transition-colors rounded">
                   SHOP NOW
                 </button>
               </div>
@@ -560,7 +599,7 @@ export default function Home() {
                   <h3 className="text-sm font-bold text-white mb-1 leading-tight drop-shadow-lg">Natural Look, Zero Maintenance</h3>
                   <p className="text-xs text-white font-medium drop-shadow-lg">Artificial Grass</p>
                 </div>
-                <button className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 text-xs font-bold self-start transition-colors rounded">
+                <button className="bg-white text-red-400 hover:text-red-500 px-3 py-1 text-xs font-bold self-start transition-colors rounded">
                   SHOP NOW
                 </button>
               </div>
@@ -832,24 +871,25 @@ export default function Home() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Title */}
       <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 md:mb-12">
-        Featured Categories
+        Featured <span className="text-red-400">Categories</span>
       </h2>
       
       {/* Categories Grid */}
-      {/* Mobile: 2-column grid showing all featured categories (desktop unchanged) */}
+      {/* Mobile: rectangular image tiles with centered text overlay, 2 columns */}
       <div className="md:hidden">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3">
           {featuredCategories.map((category) => (
             <Link key={category.name} to="/products" className="group cursor-pointer">
-              <div className="">
-                <div className="w-full aspect-square overflow-hidden rounded-md bg-gray-100">
-                  <img
-                    src={category.image}
-                    alt={category.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+              <div className="relative overflow-hidden rounded-lg h-28 sm:h-32 shadow hover:shadow-md transition-shadow duration-200">
+                <img
+                  src={category.image}
+                  alt={category.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black/30" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-white text-xs sm:text-sm font-semibold drop-shadow">{category.name}</span>
                 </div>
-                <p className="mt-2 text-sm font-medium text-gray-900 text-center">{category.name}</p>
               </div>
             </Link>
           ))}
@@ -916,7 +956,7 @@ export default function Home() {
           {/* Section Header */}
           <div className="mb-8">
             <h2 className="text-3xl font-bold text-gray-900">
-              Best Selling Products
+              <span className="text-red-400">Best Selling</span> Products
             </h2>
           </div>
           
@@ -972,7 +1012,7 @@ export default function Home() {
           {/* Section Header */}
           <div className="mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">
-              Recommended For You
+             <span className="text-red-400">Recommended</span> For You
             </h2>
             <p className="text-gray-600">
               Discover flooring options that match your style and budget.
@@ -1028,7 +1068,7 @@ export default function Home() {
   {/* Brand Strip removed */}
 
       {/* CTA */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-blue-400">
+      <section className="py-12 sm:py-16 lg:py-20 bg-red-300">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6">
             Ready to Transform Your Space?
@@ -1040,13 +1080,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
-              className="bg-white text-blue-600 hover:bg-gray-100 px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-colors"
+              className="bg-white text-red-600 hover:text-rose-400 hover:bg-rose-100 px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-colors"
             >
               Contact Us
             </Link>
             <Link
               to="/products"
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-colors"
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-rose-400 px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-colors"
             >
               Browse Catalog
             </Link>

@@ -21,9 +21,9 @@ export default function Navbar() {
   return (
     <header className="bg-white shadow-md border-b border-gray-200 sticky top-0 z-50">
       {/* Top Bar */}
-      <div className="bg-gray-900 text-white text-xs sm:text-sm py-2">
+      <div className="bg-red-300 text-white text-xs sm:text-sm py-2">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-gray-300">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-white">
             <span className="flex items-center gap-1">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h18M8 5v14m8-14v14M5 19h14"/></svg>
               +91 9876543210
@@ -51,7 +51,7 @@ export default function Navbar() {
               alt="Ranchi Decor"
               className="h-12 w-auto"
             /> */}
-            <span className="text-2xl sm:text-3xl font-bold text-gray-800 hover:text-blue-600 transition-colors">
+            <span className="text-2xl sm:text-3xl font-bold text-red-500 hover:text-blue-600 transition-colors">
               Ranchi Decor
             </span>
           </Link>
@@ -87,11 +87,11 @@ export default function Navbar() {
                   </span>
                 )}
               </div>
-              <span className="hidden lg:block">Cart</span>
+              <span className="hidden lg:block text-red-400">Cart</span>
             </Link>
 
             {/* Login */}
-            <Link to="/login" className="text-gray-700 hover:text-blue-600 transition-colors">Login</Link>
+            <Link to="/login" className="text-red-400 hover:text-rose-500 transition-colors">Login</Link>
 
             {/* Mobile Menu Button */}
             <button

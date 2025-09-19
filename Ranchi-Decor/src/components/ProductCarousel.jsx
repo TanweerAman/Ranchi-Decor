@@ -83,7 +83,7 @@ export default function ProductCarousel({ products = [], autoplay = true, interv
       {/* Track */}
       <div
         ref={scrollerRef}
-        className="overflow-x-auto no-scrollbar scroll-smooth"
+        className="overflow-x-auto no-scrollbar scroll-smooth touch-pan-x"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onFocus={() => setIsPaused(true)}

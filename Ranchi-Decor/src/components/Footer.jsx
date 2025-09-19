@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Newsletter */}
           <div className="md:col-span-1">
-            <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
+            <h3 className="text-2xl font-bold mb-4 text-red-300">Stay Updated</h3>
             <p className="mb-6 text-gray-400 leading-relaxed">Get updates on new collections and offers.</p>
             <form onSubmit={handleSubscribe} className="space-y-3">
               <div className="relative">
@@ -30,7 +30,7 @@ export default function Footer() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-yellow-400 text-black py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors"
+                className="w-full bg-red-400 text-black py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors"
               >
                 Subscribe
               </button>
@@ -39,35 +39,35 @@ export default function Footer() {
 
           {/* Useful Links */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Quick Links</h3>
+            <h3 className="text-xl font-bold mb-6 text-red-300">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/about" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/about" className="text-gray-400 hover:text-red-300 transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/contact" className="text-gray-400 hover:text-red-300 transition-colors">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link to="#" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="#" className="text-gray-400 hover:text-red-300 transition-colors">
                   Terms Of Use
                 </Link>
               </li>
               <li>
-                <Link to="#" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="#" className="text-gray-400 hover:text-red-300 transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="#" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="#" className="text-gray-400 hover:text-red-300 transition-colors">
                   Refund Policy
                 </Link>
               </li>
               <li>
-                <Link to="#" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="#" className="text-gray-400 hover:text-red-300 transition-colors">
                   FAQs
                 </Link>
               </li>
@@ -76,25 +76,25 @@ export default function Footer() {
 
           {/* Categories */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Categories</h3>
+            <h3 className="text-xl font-bold mb-6 text-red-300">Categories</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/products?category=hospital-flooring" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/products?category=hospital-flooring" className="text-gray-400 hover:text-red-300 transition-colors">
                   Hospital Flooring
                 </Link>
               </li>
               <li>
-                <Link to="/products?category=office-flooring" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/products?category=office-flooring" className="text-gray-400 hover:text-red-300 transition-colors">
                   Office Flooring
                 </Link>
               </li>
               <li>
-                <Link to="/products?category=wallpaper" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/products?category=wallpaper" className="text-gray-400 hover:text-red-300 transition-colors">
                   Wallpaper
                 </Link>
               </li>
               <li>
-                <Link to="/products?category=wooden-flooring" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/products?category=wooden-flooring" className="text-gray-400 hover:text-red-400 transition-colors">
                   Wooden Flooring
                 </Link>
               </li>
@@ -103,7 +103,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Get In Touch</h3>
+            <h3 className="text-xl font-bold mb-6 text-red-300">Get In Touch</h3>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">

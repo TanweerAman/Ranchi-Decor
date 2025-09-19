@@ -43,7 +43,7 @@ export default function ProductModal({ product, isOpen, onClose }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto">
+  <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Backdrop */}
       <div 
         className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
@@ -51,7 +51,7 @@ export default function ProductModal({ product, isOpen, onClose }) {
       ></div>
       
       {/* Modal */}
-      <div className="flex min-h-full items-center justify-center p-4">
+      <div className="flex min-h-full items-center justify-center p-2 sm:p-4">
         <div className="relative bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
           {/* Close Button */}
           <button
@@ -64,14 +64,14 @@ export default function ProductModal({ product, isOpen, onClose }) {
           </button>
           
           {/* Modal Content */}
-          <div className="flex flex-col lg:flex-row">
+          <div className="flex flex-col lg:flex-row overflow-y-auto">
             {/* Product Image */}
-            <div className="lg:w-1/2 p-6">
+            <div className="lg:w-1/2 p-4 sm:p-6">
               <div className="relative">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-96 object-cover rounded-lg"
+                  className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-lg"
                   onError={(e) => {
                     e.currentTarget.onerror = null
                     e.currentTarget.src =
@@ -92,7 +92,7 @@ export default function ProductModal({ product, isOpen, onClose }) {
             </div>
             
             {/* Product Info */}
-            <div className="lg:w-1/2 p-6 lg:pl-0">
+            <div className="lg:w-1/2 p-4 sm:p-6 lg:pl-0">
               <div className="space-y-4">
                 {/* Product Name */}
                 <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">
