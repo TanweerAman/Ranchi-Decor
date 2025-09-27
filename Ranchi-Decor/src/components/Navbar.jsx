@@ -21,7 +21,7 @@ export default function Navbar() {
   return (
     <header className="bg-white shadow-md border-b border-gray-200 sticky top-0 z-50">
       {/* Top Bar */}
-      <div className="bg-red-300 text-white text-xs sm:text-sm py-2">
+      <div className="bg-red-500 text-white text-xs sm:text-sm py-2">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-white">
             <span className="flex items-center gap-1">
@@ -91,7 +91,7 @@ export default function Navbar() {
             </Link>
 
             {/* Login */}
-            <Link to="/login" className="text-red-400 hover:text-rose-500 transition-colors">Login</Link>
+            <Link to="/login" className="text-red-500 hover:text-rose-500 transition-colors">Login</Link>
 
             {/* Mobile Menu Button */}
             <button

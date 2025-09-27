@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Newsletter */}
           <div className="md:col-span-1">
-            <h3 className="text-2xl font-bold mb-4 text-red-300">Stay Updated</h3>
+            <h3 className="text-2xl font-bold mb-4 text-red-400">Stay Updated</h3>
             <p className="mb-6 text-gray-400 leading-relaxed">Get updates on new collections and offers.</p>
             <form onSubmit={handleSubscribe} className="space-y-3">
               <div className="relative">
@@ -39,7 +39,7 @@ export default function Footer() {
 
           {/* Useful Links */}
           <div>
-            <h3 className="text-xl font-bold mb-6 text-red-300">Quick Links</h3>
+            <h3 className="text-xl font-bold mb-6 text-red-400">Quick Links</h3>
             <ul className="space-y-3">
               <li>
                 <Link to="/about" className="text-gray-400 hover:text-red-300 transition-colors">
@@ -76,7 +76,7 @@ export default function Footer() {
 
           {/* Categories */}
           <div>
-            <h3 className="text-xl font-bold mb-6 text-red-300">Categories</h3>
+            <h3 className="text-xl font-bold mb-6 text-red-400">Categories</h3>
             <ul className="space-y-3">
               <li>
                 <Link to="/products?category=hospital-flooring" className="text-gray-400 hover:text-red-300 transition-colors">
@@ -103,7 +103,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-xl font-bold mb-6 text-red-300">Get In Touch</h3>
+            <h3 className="text-xl font-bold mb-6 text-red-400">Get In Touch</h3>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
